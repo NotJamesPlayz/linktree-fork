@@ -34,6 +34,18 @@ function renderLinks(list){
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
 
+    // If an image is provided, render it above the title
+    if(item.image){
+      const img = document.createElement('img');
+      img.className = 'link-image';
+      img.src = item.image;
+      // Provide a sensible alt: use title or url
+      img.alt = item.title ? `${item.title} image` : 'link image';
+      // Don't break the layout if image fails to load
+      img.loading = 'lazy';
+      a.appendChild(img);
+    }
+
     const title = document.createElement('div');
     title.className = 'link-title';
     title.textContent = item.title || item.url || 'Untitled';

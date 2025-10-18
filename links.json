@@ -9,19 +9,34 @@
       "title": "My Blog",
       "url": "https://example.com/blog",
       "description": "Thoughts on frontend engineering and design.",
-      "tag": "Blog"
+      "tag": "Blog",
+      "image": "images/blog.png",
+      "imageAlt": "Screenshot from my blog",
+      "order": 1,
+      "color": "#0ea5a4",
+      "icon": "✍️"
     },
     {
       "title": "Portfolio",
       "url": "https://example.com/portfolio",
       "description": "Selected projects and case studies.",
-      "tag": "Work"
+      "tag": "Work",
+      "image": "images/portfolio.jpg",
+      "imageAlt": "Portfolio thumbnail",
+      "order": 2,
+      "color": "#7c3aed",
+      "icon": "🧩"
     },
     {
       "title": "GitHub",
       "url": "https://github.com/",
       "description": "Open-source and experiments.",
-      "tag": "Code"
+      "tag": "Code",
+      "image": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+      "imageAlt": "GitHub",
+      "order": 3,
+      "color": "#24292f",
+      "icon": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
     }
   ]
 }
