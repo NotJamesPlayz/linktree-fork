@@ -1,0 +1,27 @@
+{
+  "profile": {
+    "name": "Jane Developer",
+    "bio": "Frontend engineer. I make small web tools.",
+    "avatar": "avatar.svg"
+  },
+  "links": [
+    {
+      "title": "My Blog",
+      "url": "https://example.com/blog",
+      "description": "Thoughts on frontend engineering and design.",
+      "tag": "Blog"
+    },
+    {
+      "title": "Portfolio",
+      "url": "https://example.com/portfolio",
+      "description": "Selected projects and case studies.",
+      "tag": "Work"
+    },
+    {
+      "title": "GitHub",
+      "url": "https://github.com/",
+      "description": "Open-source and experiments.",
+      "tag": "Code"
+    }
+  ]
+}

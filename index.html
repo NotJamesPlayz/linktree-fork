@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071428">
+  <title>Linktree — Your Links</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <div class="container-top">
+      <button id="themeToggle" aria-label="Toggle theme" class="theme-toggle">🌙</button>
+    </div>
+    <header class="profile">
+      <img id="avatar" class="avatar" alt="avatar" src="avatar.svg">
+      <h1 id="name">Your Name</h1>
+      <p id="bio">A short bio goes here. Edit <code>links.json</code> to change.</p>
+    </header>
+
+    <section id="links" class="links"></section>
+
+    <footer class="footer">
+      <small>Fork this repository, edit <code>links.json</code>, and enable GitHub Pages.</small>
+    </footer>
+  </main>
+
+  <script src="script.js" type="module"></script>
+</body>
+</html>
