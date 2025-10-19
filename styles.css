@@ -1,148 +1,236 @@
-:root{
-  --bg:#0f1724;
-  --card:#0b1220;
-  --accent:#06b6d4;
-  --muted:#94a3b8;
-  --glass: rgba(255,255,255,0.03);
-  --fg: #e6eef7; /* readable foreground for dark */
-}
+Fixed full page HTML, CSS and JS
 
-/* Light theme variables */
-:root.light{
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --accent: #0b84ff;
-  --muted: #475569;
-  --glass: rgba(0,0,0,0.02);
-  color-scheme: light;
-  --fg: #0b1220; /* darker foreground for light theme */
-}
+Below is a complete, self-contained HTML document that fixes the layout issues you described: the page no longer gets cut off (uses full viewport height and avoids vertical centring), and the light/dark theme toggle is visible and works. Paste this into a file and open it in your browser.
 
-*{box-sizing:border-box;}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Profile links — fixed</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#06b6d4;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --fg: #e6eef7;
+      color-scheme: dark;
+    }
 
-html, body{
-  margin:0;
-  padding:0;
-  height:auto;
-  min-height:100%;
-  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: linear-gradient(180deg,var(--bg), #08101a 60%);
-  color: var(--fg);
-  transition: background .3s, color .3s;
-}
+    /* Light theme variables on body.light */
+    body.light{
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --accent: #0b84ff;
+      --muted: #475569;
+      --glass: rgba(0,0,0,0.02);
+      --fg: #0b1220;
+      color-scheme: light;
+    }
 
-body{
-  display:flex;
-  flex-direction:column;
-  align-items:center; /* horizontal center only */
-  padding:32px;
-}
+    *{box-sizing:border-box;}
 
-/* container for content */
-.container{
-  width:100%;
-  max-width:520px;
-}
+    html, body{
+      margin:0;
+      padding:0;
+      height:100%;
+      min-height:100vh;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,var(--bg), #08101a 60%);
+      color: var(--fg);
+      transition: background .3s, color .3s;
+    }
 
-/* profile card */
-.profile{
-  text-align:center;
-  padding:28px 18px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border-radius:12px;
-  margin-bottom:18px;
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-}
+    /* layout adjustments: start content at top, allow scrolling if needed */
+    body{
+      display:flex;
+      flex-direction:column;
+      align-items:center; /* horizontal center only */
+      justify-content:flex-start; /* ensure top of page visible */
+      padding:32px;
+      gap:12px;
+    }
 
-/* theme toggle button */
-.container-top{
-  display:flex;
-  justify-content:flex-end;
-  margin-bottom:10px;
-}
-.theme-toggle{
-  background:transparent;
-  border:0;
-  color:var(--muted);
-  font-size:18px;
-  cursor:pointer;
-  padding:10px; /* bigger for touch */
-  border-radius:10px;
-}
-.theme-toggle:focus{
-  outline:2px solid var(--accent);
-  outline-offset:2px;
-}
+    /* container for content */
+    .container{
+      width:100%;
+      max-width:520px;
+    }
 
-/* typography */
-h1{margin:0 0 6px 0;font-size:22px;color:var(--fg);}
-p{margin:0;color:var(--muted);line-height:1.4;}
+    /* ensure theme toggle sits inside container and is always visible */
+    .container-top{
+      display:flex;
+      justify-content:flex-end;
+      margin-bottom:10px;
+      position:relative;
+      z-index:5;
+    }
+    .theme-toggle{
+      background:transparent;
+      border:0;
+      color:var(--muted);
+      font-size:18px;
+      cursor:pointer;
+      padding:10px;
+      border-radius:10px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .theme-toggle:focus{
+      outline:2px solid var(--accent);
+      outline-offset:2px;
+    }
 
-/* avatar */
-.avatar{
-  width:96px;
-  height:96px;
-  border-radius:999px;
-  display:block;
-  margin:0 auto 12px auto;
-  border:4px solid rgba(255,255,255,0.04);
-  background:var(--glass);
-}
+    /* profile card */
+    .profile{
+      text-align:center;
+      padding:28px 18px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      margin-bottom:18px;
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+    }
 
-/* links section */
-.links{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
+    /* typography */
+    h1{margin:0 0 6px 0;font-size:22px;color:var(--fg);}
+    p{margin:0;color:var(--muted);line-height:1.4;}
 
-.link-card{
-  display:block;
-  text-decoration:none;
-  color:inherit;
-  padding:16px 18px;
-  border-radius:12px;
-  background:var(--card);
-  box-shadow: 0 2px 0 rgba(0,0,0,0.35);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.link-card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 24px rgba(2,6,23,0.6);
-}
-.link-title{font-weight:600; font-size:16px;}
-.link-desc{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4;}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:12px;margin-left:8px;color:var(--muted);}
-.link-image{
-  display:block;
-  max-width:100%;
-  height:auto;
-  object-fit:cover;
-  border-radius:12px;
-  margin:0 auto 10px auto;
-  border:2px solid rgba(255,255,255,0.03);
-  background:var(--glass);
-}
+    /* avatar */
+    .avatar{
+      width:96px;
+      height:96px;
+      border-radius:999px;
+      display:block;
+      margin:0 auto 12px auto;
+      border:4px solid rgba(255,255,255,0.04);
+      background:var(--glass);
+      flex-shrink:0;
+    }
 
-/* footer */
-.footer{margin-top:14px;text-align:center;color:var(--muted);font-size:13px;}
-.small-muted{font-size:12px;color:var(--muted);}
+    /* links section */
+    .links{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
 
-/* responsive for iPad */
-@media (max-width:768px){
-  body{padding:24px;}
-  .container{max-width:480px;}
-  h1{font-size:20px;}
-  .theme-toggle{padding:8px;font-size:17px;}
-}
+    .link-card{
+      display:block;
+      text-decoration:none;
+      color:inherit;
+      padding:16px 18px;
+      border-radius:12px;
+      background:var(--card);
+      box-shadow: 0 2px 0 rgba(0,0,0,0.35);
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .link-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 24px rgba(2,6,23,0.6);
+    }
+    .link-title{font-weight:600; font-size:16px;}
+    .link-desc{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4;}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-size:12px;margin-left:8px;color:var(--muted);}
+    .link-image{
+      display:block;
+      max-width:100%;
+      height:auto;
+      object-fit:cover;
+      border-radius:12px;
+      margin:0 auto 10px auto;
+      border:2px solid rgba(255,255,255,0.03);
+      background:var(--glass);
+    }
 
-/* responsive for iPhone */
-@media (max-width:480px){
-  body{padding:16px;}
-  .container{max-width:100%;}
-  h1{font-size:18px;}
-  .link-card{padding:14px;}
-  .avatar{width:80px;height:80px;}
-  .theme-toggle{padding:6px;font-size:16px;}
-}
+    /* footer */
+    .footer{margin-top:14px;text-align:center;color:var(--muted);font-size:13px;}
+    .small-muted{font-size:12px;color:var(--muted);}
+
+    /* responsive for iPad */
+    @media (max-width:768px){
+      body{padding:24px;}
+      .container{max-width:480px;}
+      h1{font-size:20px;}
+      .theme-toggle{padding:8px;font-size:17px;}
+    }
+
+    /* responsive for iPhone */
+    @media (max-width:480px){
+      body{padding:16px;}
+      .container{max-width:100%;}
+      h1{font-size:18px;}
+      .link-card{padding:14px;}
+      .avatar{width:80px;height:80px;}
+      .theme-toggle{padding:6px;font-size:16px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="container-top">
+      <button class="theme-toggle" id="themeToggle" aria-pressed="false" title="Toggle light / dark">
+        <span id="themeLabel">Light</span>
+      </button>
+    </div>
+
+    <div class="profile" id="profileCard">
+      <img class="avatar" alt="avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><rect rx='48' width='100%' height='100%' fill='%23081216' /></svg>">
+      <h1>James Hayes</h1>
+      <p class="small-muted">Builder of neat things · Ruislip, UK</p>
+    </div>
+
+    <div class="links">
+      <a class="link-card" href="#" role="link">
+        <div class="link-title">Portfolio <span class="badge">New</span></div>
+        <div class="link-desc">Selected projects, write-ups and notes.</div>
+      </a>
+
+      <a class="link-card" href="#" role="link">
+        <div class="link-title">Blog</div>
+        <div class="link-desc">Recent thoughts on design, games and math.</div>
+      </a>
+
+      <a class="link-card" href="#" role="link">
+        <div class="link-title">Contact</div>
+        <div class="link-desc">Business enquiries and collaborations.</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      <div class="small-muted">Made with care · Dark-first UI</div>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle: toggles the light class on <body> and updates label & aria
+    (function(){
+      const btn = document.getElementById('themeToggle');
+      const label = document.getElementById('themeLabel');
+      // Initialize from saved preference if present
+      const saved = localStorage.getItem('pref-theme');
+      if (saved === 'light') {
+        document.body.classList.add('light');
+        btn.setAttribute('aria-pressed','true');
+        label.textContent = 'Dark';
+      } else {
+        // default dark
+        document.body.classList.remove('light');
+        btn.setAttribute('aria-pressed','false');
+        label.textContent = 'Light';
+      }
+
+      btn.addEventListener('click', function(){
+        const isLight = document.body.classList.toggle('light');
+        btn.setAttribute('aria-pressed', String(isLight));
+        // Label shows what will happen when clicked next: show opposite mode name
+        label.textContent = isLight ? 'Dark' : 'Light';
+        localStorage.setItem('pref-theme', isLight ? 'light' : 'dark');
+      });
+    })();
+  </script>
+</body>
+</html>
