@@ -1,4 +1,4 @@
-﻿# Linktree Clone
+# Linktree Clone
 
 A forkable Linktree-style static site  share all your links in one place.
 
@@ -36,10 +36,15 @@ Example structure:
   },
   "links": [
     {
-      "title": "Title",
-      "url": "https://...",
-      "description": "Optional description",
-      "tag": "Optional tag"
+      "title": "My Cool Link",
+      "url": "https://example.com",
+      "description": "A fun little link to check out",
+      "tag": "Fun",
+      "icon": "🔥",
+      "image": "placeholder.jpg",
+      "imageAlt": "Placeholder image",
+      "color": "#ff6f61",
+      "order": 1
     }
   ]
 }
